@@ -10,3 +10,7 @@ docker compose ps
 # STOP Running Container based on config file command
 docker compose stop
 # Tidak akan menghapus container yang telah dibuat
+
+# REMOVE Container, Volume and Network based on config file command
+docker compose down
+# menghapus semua Container, Volume and Network based on config file.
