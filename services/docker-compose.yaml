@@ -1,10 +1,14 @@
 version: "3.8"
 
+# Services = Container
 services:
-  # Services = Container
+
+  # This is example of nginx container
   nginx-example-3:
     image: nginx:latest
     container_name: nginx-example-3
+
+  # This is example of mongo container
   mongodb-example-1:
     image: mongo:latest
     container_name: mongodb-example-1
