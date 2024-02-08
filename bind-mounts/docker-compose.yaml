@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+
+  mongodb-1:
+    image: mongo:latest
+    container_name: mongodb-1
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ariefkarditya
+      MONGO_INITDB_ROOT_PASSWORD: 12032003@@@hehe
+      MONGO_INITDB_DATABASE: admin
+    # Short Syntax
+    volumes:
+      - "./data-mongo-1:/data/db"
+
+  mongodb-2:
+    image: mongo:latest
+    container_name: mongodb-2
+    ports:
+      - "27022:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ariefkarditya
+      MONGO_INITDB_ROOT_PASSWORD: 12032003@@@hehe
+      MONGO_INITDB_DATABASE: admin
+    # Long Syntax
+    volumes:
+      - type: bind
+        source: "./data-mongo-2"
+        target: "/data/db"
+        read_only: false
