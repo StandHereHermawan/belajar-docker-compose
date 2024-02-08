@@ -14,3 +14,7 @@ docker compose stop
 # REMOVE Container, Volume and Network based on config file command
 docker compose down
 # menghapus semua Container, Volume and Network based on config file.
+
+# LIST Running Project based on config file command
+docker compose ls
+# nama project sesuai nama direkrori lokasi file config ".yaml".
