@@ -1,0 +1,48 @@
+version: "3.8"
+
+#  volumes:
+#    mongo-data-1:
+#      name: mongo-data-1
+#    mongo-data-2:
+#      name: mongo-data-2
+
+#  Docker Compose memerlukan container (services) agar volume dibuat.
+#  Jika command hanya ada perintah membuat volume namun tidak ada perintah membuat container (services),
+#  docker tidak akan mengeksekusi-nya.
+
+services:
+
+  mongodb-1:
+    image: mongo:latest
+    container_name: mongodb-1
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ariefkarditya
+      MONGO_INITDB_ROOT_PASSWORD: 12032003@@@hehe
+      MONGO_INITDB_DATABASE: admin
+    # Short Syntax
+    volumes:
+      - "mongo-data-1:/data/db"
+
+  mongodb-2:
+    image: mongo:latest
+    container_name: mongodb-2
+    ports:
+      - "27022:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ariefkarditya
+      MONGO_INITDB_ROOT_PASSWORD: 12032003@@@hehe
+      MONGO_INITDB_DATABASE: admin
+    # Long Syntax
+    volumes:
+      - type: volume
+        source: mongo-data-2
+        target: "/data/db"
+        read_only: false
+
+volumes:
+  mongo-data-1:
+    name: mongo-data-1
+  mongo-data-2:
+    name: mongo-data-2
