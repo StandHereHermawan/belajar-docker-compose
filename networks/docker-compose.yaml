@@ -1,0 +1,52 @@
+version: "3.8"
+
+services:
+  mongodb-2:
+    image: mongo:latest
+    container_name: mongodb-2
+    # Long Syntax
+    ports:
+      - protocol: tcp
+        published: 27021
+        target: 27017
+    # - "27021:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ariefkarditya
+      MONGO_INITDB_ROOT_PASSWORD: 12032003@@@hehe
+      MONGO_INITDB_DATABASE: admin
+    # Long Syntax
+    volumes:
+      - type: volume
+        source: mongo-volume-1
+        target: "/data/db"
+        read_only: false
+    networks:
+      - network-mongo-1
+
+networks:
+  network-mongo-1:
+    name: network-mongo-1
+    driver: bridge
+
+volumes:
+  mongo-volume-1:
+    name: mongo-volume-1
+
+#  volumes:
+#    mongo-data-1:
+#      name: mongo-data-1
+#    mongo-data-2:
+#      name: mongo-data-2
+
+#  Docker Compose memerlukan container (services) agar volume dibuat.
+#  Jika command hanya ada perintah membuat volume namun tidak ada perintah membuat container (services),
+#  docker tidak akan mengeksekusi perintah pembuatan volume-nya.
+
+#  networks:
+#    network-mongo-1:
+#      name: network-mongo-1
+#      driver: bridge
+
+#  Docker Compose memerlukan container (services) agar networks dibuat.
+#  Jika command hanya ada perintah membuat network namun tidak ada perintah membuat container (services),
+#  docker tidak akan mengeksekusi perintah pembuatan network-nya.
