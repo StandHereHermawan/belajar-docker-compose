@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+
+  mongo-db-one:
+    image: mongo:latest
+    container_name: mongo-db-one
+    # LONG Syntax
+    ports:
+      - protocol: tcp
+        published: 27017
+        target: 27017
+#     - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: arief
+      MONGO_INITDB_ROOT_PASSWORD: rahasia
+      MONGO_INITDB_DATABASE: admin
+    networks:
+      - network-mongo-1
+
+  mongo-db-express-one:
+    image: mongo-express:latest
+    container_name: mongo-db-express-one
+    # LONG Syntax
+    ports:
+      - protocol: tcp
+        published: 8081
+        target: 8081
+#     - "8081:8081"
+    environment:
+      ME_CONFIG_BASICAUTH_USERNAME: arief
+      ME_CONFIG_BASICAUTH_PASSWORD: rahasia
+      ME_CONFIG_MONGODB_ADMINUSERNAME: arief
+      ME_CONFIG_MONGODB_ADMINPASSWORD: rahasia
+      ME_CONFIG_MONGODB_SERVER: mongo-db-one
+    restart: always
+    networks:
+      - network-mongo-1
+    depends_on:
+      - mongo-db-one
+
+networks:
+  network-mongo-1:
+    name: network-mongo-1
+    driver: bridge
